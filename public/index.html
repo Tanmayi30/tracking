@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mumbai Bus Tracker - Live Tracking</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚌 Mumbai Bus Tracker</h1>
+            <p>Real-time bus tracking and route planning</p>
+        </div>
+
+        <div class="controls">
+            <div class="input-group">
+                <label for="destination">🎯 Enter Your Destination:</label>
+                <input type="text" id="destination" placeholder="e.g., Bandra Station, Andheri Market, CST...">
+            </div>
+            <button class="btn btn-primary" onclick="planRoute()">Plan Route</button>
+            <button class="btn btn-secondary" onclick="findMyLocation()">My Location</button>
+            <button class="btn btn-info" onclick="findNearbyBuses()">Nearby Buses</button>
+        </div>
+
+        <div class="map-container">
+            <div id="map"></div>
+            <div class="map-controls">
+                <button class="map-btn" onclick="toggleTraffic()" title="Toggle Traffic">🚦</button>
+                <button class="map-btn" onclick="toggleSatellite()" title="Toggle Satellite">🛰️</button>
+                <button class="map-btn" onclick="centerMap()" title="Center Map">📍</button>
+            </div>
+        </div>
+
+        <div class="info-dashboard">
+            <div class="info-card">
+                <h3>📍 Your Location</h3>
+                <p id="userLocation">Click "My Location" to detect</p>
+            </div>
+            <div class="info-card">
+                <h3>🎯 Destination</h3>
+                <p id="destinationDisplay">Enter destination above</p>
+            </div>
+            <div class="info-card">
+                <h3>⏱️ Estimated Time</h3>
+                <p id="estimatedTime">Plan route to see timing</p>
+            </div>
+            <div class="info-card">
+                <h3>📏 Distance</h3>
+                <p id="routeDistance">Plan route to see distance</p>
+            </div>
+        </div>
+
+        <div class="bus-dashboard">
+            <h3>🚌 Live Bus Fleet Status</h3>
+            <div id="busGrid" class="bus-grid">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    Loading bus data...
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Google Maps API -->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOF3e8HHl-SzZdFug_g3nD09urf3AmsHs&callback=initMap&libraries=geometry,places">
+    </script>
+    
+    <!-- Socket.IO -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
